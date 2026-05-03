@@ -8,6 +8,15 @@ char character(char start, int offset);
 
 using namespace std;
 
+class invalidRangeException : public exception
+{
+public:
+    const char* what() const noexcept override
+    {
+        return "Invalid range exception";
+    }
+};
+
 class invalidCharacterException : public exception
 {
 public:
