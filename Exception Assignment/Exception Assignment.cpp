@@ -30,11 +30,15 @@ int main()
 {
     try
     {
-		character('a', 5);
+		cout << character('H', -1) << endl;
     }
     catch (const invalidCharacterException& e)
     {
 		cout << e.what() << endl;
+    }
+    catch (const invalidRangeException& e)
+    {
+        cout << e.what() << endl;
     }
 
 	cout << "\n done "<< endl;
@@ -46,5 +50,23 @@ char character(char start, int offset)
     {
         throw invalidCharacterException();
     }
+
+	char end = start + offset;
+    if(!isupper(start))
+    {
+        if (end < 'a' || end > 'z')
+        {
+            throw invalidRangeException();
+        }
+    }else
+    {
+        if (end < 'A' || end > 'Z')
+        {
+            throw invalidRangeException();
+        }
+    }
+
+	return end;
+	
 }
 
