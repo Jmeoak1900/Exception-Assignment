@@ -1,5 +1,7 @@
-// Exception Assignment.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Jonah Meoak
+// CIS 1202 M01
+// May 3 2026
+// Character offset program demo thing with exception handling
 
 #include <iostream>
 #include <exception>
@@ -28,20 +30,23 @@ public:
 
 int main()
 {
-    try
+    char start[] = {'a','a','Z','?','A'};
+	int num[] = { 1, -1, -1, 5, 32 };
+    for (size_t i = 0; i < 5; i++)
     {
-		cout << character('H', -1) << endl;
+        try
+        {
+            cout << character(start[i], num[i]) << endl;
+        }
+        catch (const invalidCharacterException& e)
+        {
+            cout << e.what() << endl;
+        }
+        catch (const invalidRangeException& e)
+        {
+            cout << e.what() << endl;
+        }
     }
-    catch (const invalidCharacterException& e)
-    {
-		cout << e.what() << endl;
-    }
-    catch (const invalidRangeException& e)
-    {
-        cout << e.what() << endl;
-    }
-
-	cout << "\n done "<< endl;
 }
 
 char character(char start, int offset)
